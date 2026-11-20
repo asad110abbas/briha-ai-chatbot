@@ -17,6 +17,8 @@
 
 </div>
 
+> 🌌 Part of **[BRIHA AI World](https://github.com/asad110abbas)**, the AI-driven portfolio of Syed Asad Abbas.
+
 ---
 
 ## Overview
@@ -146,6 +148,14 @@ deploy/             Nginx config, web Dockerfile, VM deployment guide
 | English | "What's the current stock of 23x36 offset 80 gsm?" |
 
 > The bundled mock data is synthetic. It's generated deterministically for demos and tests and doesn't represent any real business.
+
+## Deployment
+
+| Target | How |
+|---|---|
+| ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white) **Vercel** | Deployed to Vercel for cloud access (`vercel.json` routes the SPA and API) |
+| ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white) **Docker Compose** | `docker compose up -d --build` runs Nginx (HTTPS + frontend) → FastAPI → PostgreSQL on any Linux VM |
+| ![Linux](https://img.shields.io/badge/Linux_VM-FCC624?logo=linux&logoColor=black) **On-prem VM** | Step-by-step guide in [deploy/README.md](deploy/README.md): TLS, backups, go-live checklist |
 
 ## License
 
