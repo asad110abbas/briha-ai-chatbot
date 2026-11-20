@@ -13,12 +13,12 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL_16-4169E1?logo=postgresql&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI_GPT--5-412991?logo=openai&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
-![BRIHA](https://img.shields.io/badge/BRIHA-Genesis_of_AGI-8B5CF6?labelColor=0B1024)
+![BRIHA](https://img.shields.io/badge/Part_of-BRIHA-8B5CF6?labelColor=0B1024)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 </div>
 
-> ⚡ **BRIHA: The Genesis of AGI.** This is a **flagship** of the [BRIHA AI World](https://github.com/asad110abbas), built by **Syed Asad Abbas**.
+> ⚡ **Part of [BRIHA](https://github.com/asad110abbas)**, built by Syed Asad Abbas.
 
 ---
 
