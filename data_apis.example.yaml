@@ -1,0 +1,101 @@
+# =====================================================================================
+#  BRIHA — company ki APIs ki list (DATASOURCE_MODE=rest ho to ye file use hoti hai)
+#  Is file ko copy karke "data_apis.yaml" naam se save karein aur IT ki di hui details bharein.
+#
+#  Har API ke liye aap batate hain:
+#    1. ye kis kaam ki hai (cutting / sales / stock)   -> "tool"
+#    2. address aur port                               -> "url"
+#    3. key kahan se aaye (key .env mein rakhein)       -> "api_key_env"
+#    4. API ke andar field ke naam kya hain             -> "fields"
+#  GPT-5 sirf yehi APIs chun sakta hai. Koi aur URL wo khud nahi khol sakta.
+# =====================================================================================
+
+# API se aane wali dates kis format mein hain (Python format). 2026-11-03 = "%Y-%m-%d", 03/11/2026 = "%d/%m/%Y"
+date_format: "%Y-%m-%d"
+
+apis:
+  # ---------------- CUTTING (reel cutting) ----------------
+  - tool: get_cutting_summary          # isay na badlein: cutting | sales | stock ke liye fixed naam
+    description: "Daily reel cutting entries"
+    url: "https://erp.example.com/api/cutting"   # IT se: address + PORT + path
+    method: GET
+    api_key_env: CUTTING_API_KEY        # .env mein CUTTING_API_KEY=... likhein
+    auth_header: "X-API-Key"            # IT batayega: X-API-Key ya Authorization
+    # BRIHA ke parameter  ->  API ke parameter ka naam. Jo parameter API nahi leti, use hata dein;
+    # BRIHA phir khud filter kar lega.
+    params:
+      date_from: "fromDate"
+      date_to: "toDate"
+    # JSON mein rows kahan hain. Agar seedhi list hai to "" chhor dein. Maslan {"data": {"items": [...]}} -> "data.items"
+    rows_path: "data"
+    # BRIHA ka naam  ->  API ke field ka naam
+    fields:
+      date: "CutDate"
+      paper_type: "Quality"     # code ya naam dono chalega
+      gsm: "GSM"
+      size: "SheetSize"         # "23x36", "23 x 36", "36*23" sab chalega
+      sheets_cut: "Sheets"
+      weight_kg: "WeightKg"
+      reel_id: "ReelNo"         # har reel ka number (kitni reels use hui gin'ne ke liye)
+
+  # ---------------- SALES ----------------
+  - tool: get_sales_summary
+    description: "Sales invoice lines"
+    url: "https://erp.example.com/api/sales"
+    method: GET
+    api_key_env: SALES_API_KEY
+    auth_header: "X-API-Key"
+    params:
+      date_from: "from"
+      date_to: "to"
+    rows_path: ""
+    fields:
+      date: "InvoiceDate"
+      invoice_no: "InvoiceNo"   # invoices gin'ne ke liye
+      customer: "CustomerCode"
+      paper_type: "Item"
+      gsm: "GSM"
+      size: "Size"
+      quantity_sheets: "QtySheets"
+      weight_kg: "Kg"
+      amount_pkr: "Amount"      # sirf un users ko dikhega jinhe admin ijazat de
+
+  # ---------------- STOCK / INVENTORY ----------------
+  - tool: get_stock_summary
+    description: "Current inventory by item and godown"
+    url: "https://inventory.example.com/inventory/current"
+    method: GET
+    api_key_env: INVENTORY_API_KEY
+    auth_header: "Authorization"
+    params: {}                  # ye API sirf aaj ka stock deti hai
+    rows_path: "items"
+    fields:
+      paper_type: "ItemName"
+      gsm: "GSM"
+      size: "Size"
+      warehouse: "Godown"
+      form: "Form"              # "reel" ya "sheet"
+      quantity_sheets: "Sheets"
+      reels: "Reels"
+      weight_kg: "Kg"
+
+# Paper types ki list (naam pehchanne ke liye). Agar API nahi hai to "static" mein khud likh dein.
+master_data:
+  paper_types:
+    static:
+      - { code: "ART_PAPER", name: "Art Paper" }
+      - { code: "ART_CARD", name: "Art Card" }
+      - { code: "BLEACH_CARD", name: "Bleach Card" }
+      - { code: "OFFSET", name: "Offset Paper" }
+      - { code: "DUPLEX", name: "Duplex Board" }
+  # Ya API se:
+  # paper_types:
+  #   url: "https://erp.example.com/api/items"
+  #   api_key_env: CUTTING_API_KEY
+  #   rows_path: "data"
+  #   code_field: "ItemCode"
+  #   name_field: "ItemName"
+  customers:
+    static: []
+  warehouses:
+    static: []
