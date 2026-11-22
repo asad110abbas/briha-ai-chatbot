@@ -2,7 +2,7 @@
 
 <img src="frontend/public/logo.svg" width="84" alt="Briha logo" />
 
-# Briha AI Chatbot
+# Multi-Agentic AI Bot
 
 **A multi-agent analytics chatbot that answers business questions from live company data, in English or Roman Urdu, with every number verified against its source.**
 
@@ -90,8 +90,8 @@ flowchart LR
 **Try it with zero API keys** (offline demo LLM + mock data):
 
 ```bash
-git clone https://github.com/asad110abbas/briha-ai-chatbot.git
-cd briha-ai-chatbot
+git clone https://github.com/asad110abbas/multi-agentic-ai-bot.git
+cd multi-agentic-ai-bot
 cp .env.example .env            # set LLM_MODE=offline_demo, DATASOURCE_MODE=mock, and pick passwords
 cp data_apis.example.yaml data_apis.yaml
 docker compose -p briha -f docker-compose.local.yml up -d --build

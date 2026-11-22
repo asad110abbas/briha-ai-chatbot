@@ -1,4 +1,4 @@
-# Briha AI Chatbot: deploying on a Linux VM
+# Multi-Agentic AI Bot: deploying on a Linux VM
 
 Target: Ubuntu Server 24.04 LTS, 4 vCPU / 8 GB RAM / 60 GB SSD, Docker Engine + Compose plugin.
 

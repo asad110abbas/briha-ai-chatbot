@@ -1,7 +1,7 @@
 [project]
 name = "briha-api"
 version = "0.1.0"
-description = "Briha AI Chatbot - multi-agent analytics chatbot (backend)"
+description = "Multi-Agentic AI Bot - multi-agent analytics chatbot (backend)"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "fastapi>=0.115",
